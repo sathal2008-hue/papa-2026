@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#04100c">
+<title>Папа.exe · С праздником!</title>
+<meta property="og:title" content="Любимый папа, загрузка завершена">
+<meta property="og:image" content="img/couple.jpg">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{--gold:#ffd58a;--ink:#f6f1e6;--glow:90,170,255}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory;overscroll-behavior-y:none}
+body{font:16px/1.65 Manrope,system-ui,sans-serif;color:var(--ink);background:#3a80c4;overflow-x:hidden}
+img{display:block;max-width:100%}
+#sky,#stars,#clouds,#earth,#probe{position:fixed;inset:0;pointer-events:none}
+#sky{z-index:0}#stars{z-index:1;opacity:0}#clouds{z-index:2;overflow:hidden}
+#earth{z-index:2;top:auto;height:46vh;bottom:-34vh;left:-35%;right:-35%;border-radius:50%;
+ background:radial-gradient(ellipse at 50% 0,rgba(var(--glow),.75),rgba(var(--glow),.18) 32%,transparent 62%);opacity:0}
+.star{position:absolute;border-radius:50%;background:#fff;animation:tw 3s ease-in-out infinite}
+@keyframes tw{50%{opacity:.25}}
+.cl{position:absolute;background:#fff;border-radius:80px;filter:blur(16px);opacity:.75}
+#probe{z-index:3;top:26vh;bottom:auto;height:0;display:flex;justify-content:center}
+#probe>div{position:absolute;left:50%;top:0}#bal,#chute{position:absolute;left:0;top:0}
+#bal{transition:opacity .5s}#chute{opacity:0;transition:opacity .5s;transform-origin:50% 0}#bal{transform-origin:50% 0}
+.sway{animation:sw 5s ease-in-out infinite;transform-origin:50% 0}
+@keyframes sw{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+#pop{position:absolute;left:50%;top:60px;width:20px;height:20px;margin:-10px;border-radius:50%;border:3px solid #ffd58a;opacity:0}
+#pop.go{animation:pp .9s ease-out}
+@keyframes pp{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(22)}}
+#hud{position:fixed;z-index:20;top:max(10px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);display:flex;gap:6px;width:calc(100% - 20px);max-width:520px}
+#hud div{flex:1;background:rgba(6,14,36,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:6px 10px;font:500 13px 'JetBrains Mono',monospace}
+#hud div{min-width:0}#hud small{display:block;font-size:9px;letter-spacing:.14em;color:#9fb4d8}
+#hud b{font-weight:500;color:var(--gold);white-space:nowrap}
+#gauge{position:fixed;z-index:20;left:7px;top:22vh;height:56vh;width:4px;border-radius:4px;background:rgba(255,255,255,.2)}
+#gauge i{position:absolute;bottom:0;left:0;right:0;border-radius:4px;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+main{position:relative;z-index:5}
+.stop{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:74px 16px calc(80px + env(safe-area-inset-bottom));scroll-snap-align:center;scroll-snap-stop:always}
+.panel{width:100%;max-width:470px;background:rgba(8,20,50,.52);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid rgba(255,255,255,.2);border-radius:26px;padding:20px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.tag{font:500 11px 'JetBrains Mono',monospace;letter-spacing:.16em;color:#9fb4d8;margin-bottom:8px}
+h2{font:italic 600 24px/1.2 'Playfair Display',Georgia,serif;color:var(--gold);margin-bottom:10px}
+.panel p{color:#e8e2d4;font-size:15.5px;line-height:1.55}
+.ph{width:100%;border-radius:16px;margin-top:14px;max-height:30vh;object-fit:cover;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+.g img{width:100%;height:100%;object-fit:cover;border-radius:14px}
+.g .a{grid-row:span 2;height:27vh}.g .b,.g .c{height:12.5vh}.g .d{grid-column:span 2;height:15vh;object-position:50% 40%}
+.car{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;margin-top:14px;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none}.car::-webkit-scrollbar{display:none}.car img{height:30vh;width:auto;max-width:none;flex:none;border-radius:14px;scroll-snap-align:center;cursor:zoom-in;box-shadow:0 6px 18px rgba(0,0,0,.3)}.car img{min-width:60px;background:rgba(255,255,255,.08)}.lnk{display:inline-block;margin-top:14px;color:var(--gold);font-weight:600;text-decoration:none}.sw{font:500 11px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#9fb4d8;text-align:center;margin-top:10px}
+.hero{text-align:center;flex-direction:column}
+.hero small{font:500 12px 'JetBrains Mono',monospace;letter-spacing:.22em;background:rgba(6,14,36,.45);padding:7px 14px;border-radius:20px}
+.hero h1{font:italic 600 clamp(40px,11vw,76px)/1.05 'Playfair Display',Georgia,serif;margin:22px 0 14px;text-shadow:0 4px 30px rgba(0,30,80,.45)}
+.hero p{max-width:380px;text-shadow:0 2px 14px rgba(0,30,80,.5)}
+.hint{margin-top:44px;font-size:30px;animation:bb 1.8s infinite}
+@keyframes bb{50%{transform:translateY(10px)}}
+.rv.on{animation:ap .6s both}@keyframes ap{from{opacity:.3;transform:translateY(18px)}}
+.big{font:italic 600 clamp(30px,8vw,44px)/1.15 'Playfair Display',serif;color:var(--gold);text-align:center;margin-bottom:12px}
+.gift{width:100%;max-width:470px;text-align:center}
+.gift .cv{border-radius:20px;box-shadow:0 18px 50px rgba(0,0,0,.4);transform:rotate(-2deg);margin:18px auto;max-width:340px;width:100%}
+.btn{border:0;border-radius:40px;padding:16px 34px;font:600 17px Manrope,sans-serif;background:var(--gold);color:#2a1a05;cursor:pointer;box-shadow:0 0 0 0 rgba(255,213,138,.7);animation:pl 2s infinite}
+@keyframes pl{70%{box-shadow:0 0 0 18px rgba(255,213,138,0)}}
+#in{display:none;margin-top:10px;text-align:left}
+#in.open{display:block;animation:rise 1s}
+@keyframes rise{from{opacity:0;transform:translateY(30px)}}
+#in img{border-radius:16px;cursor:zoom-in;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+#in a{color:var(--gold)}.row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:15px}.row:last-child{border:0}.row em{font:500 13px 'JetBrains Mono',monospace;color:var(--gold);font-style:normal;white-space:nowrap}.row b{display:inline-block;margin-left:4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--gold);color:#2a1a05;border-radius:10px;padding:1px 8px}
+#in .box{background:rgba(8,20,50,.5);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.2);border-radius:22px;padding:18px;margin-top:14px}
+.again{display:inline-block;margin:26px 0 40px;color:var(--ink);opacity:.8;font-size:14px;cursor:pointer;text-decoration:underline}
+.conf{position:fixed;top:-10vh;z-index:99;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(112vh) rotate(360deg)}}
+#nx{position:fixed;z-index:25;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);border:0;border-radius:30px;padding:14px 28px;font:600 16px Manrope,sans-serif;background:var(--gold);color:#2a1a05;box-shadow:0 6px 24px rgba(0,0,0,.4);transition:opacity .3s;white-space:nowrap}#nx.hide{opacity:0;pointer-events:none}#nx:active{transform:translateX(-50%) scale(.96)}
+#lb{position:fixed;inset:0;z-index:100;background:#000d;display:none;align-items:center;justify-content:center;padding:10px}
+#lb.on{display:flex}#lb img{max-height:96vh}
+@media(max-width:400px){#hud{gap:4px}#hud div{padding:5px 6px}#hud b{font-size:11px}#hud small{font-size:8px}h2{font-size:22px}.panel{padding:18px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+.carw{position:relative;margin-top:14px}
+.carw .car{margin-top:0;scroll-snap-type:x mandatory;scroll-behavior:smooth}
+.car img{flex:0 0 100%;width:100%;max-width:100%;min-width:0;height:34vh;object-fit:contain;background:rgba(0,0,0,.28);scroll-snap-align:center;scroll-snap-stop:always}
+.cb{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(8,20,50,.72);color:var(--gold);font-size:22px;line-height:1;cursor:pointer;z-index:3;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.cb.l{left:8px}.cb.r{right:8px}.cb:disabled{opacity:.25;cursor:default}.cb:hover:not(:disabled){background:rgba(8,20,50,.92)}
+.dots2{display:flex;gap:6px;justify-content:center;align-items:center;margin-top:10px;min-height:8px}
+.dots2 i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);transition:.25s}.dots2 i.on{background:var(--gold);width:20px;border-radius:5px}
+.ph[src$="young.jpg"]{margin-left:auto;margin-right:auto;width:auto}
+@media(min-width:900px){.panel{max-width:800px;padding:30px 36px}.panel p{font-size:17.5px}h2{font-size:32px}.car img{height:46vh}#hud{max-width:640px}.tag{font-size:12px}}
+
+:root{--gold:#ffb347;--g:#3dffa0;--ink:#d6f5e6}
+body{background:#04100c;font:16px/1.65 'IBM Plex Sans',system-ui,sans-serif}
+#rain{position:fixed;inset:0;z-index:0;width:100%;height:100%;opacity:.38;pointer-events:none}
+#scan{position:fixed;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.2) 0 1px,transparent 1px 3px),radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.65))}
+.panel{background:rgba(3,14,10,.9);border:1px solid rgba(61,255,160,.4);border-radius:12px;padding:0 20px 18px;box-shadow:0 18px 50px rgba(0,0,0,.55),0 0 34px rgba(61,255,160,.09);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.tb{display:flex;align-items:center;gap:6px;margin:0 -20px 14px;padding:9px 14px;border-bottom:1px solid rgba(61,255,160,.25);background:rgba(61,255,160,.08);border-radius:12px 12px 0 0;font:500 11px 'IBM Plex Mono',monospace;color:#7fffc4}
+.tb i{width:9px;height:9px;border-radius:50%;background:#ff5f56}.tb i:nth-child(2){background:#ffbd2e}.tb i:nth-child(3){background:#27c93f}.tb b{margin-left:8px;font-weight:500}
+.tag{font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:var(--g);margin-bottom:6px}
+h2{font:600 21px/1.3 'IBM Plex Mono',monospace;color:var(--gold);text-shadow:0 0 14px rgba(255,179,71,.35)}
+h2:before{content:'> ';color:var(--g)}
+h2:after{content:'\2588';color:var(--g);margin-left:6px;animation:bk 1s steps(2) infinite}
+@keyframes bk{50%{opacity:0}}
+.panel p{color:var(--ink);font-size:15.5px}
+.hero h1{font:400 clamp(18px,5vw,40px)/1.7 'Press Start 2P','IBM Plex Mono',monospace;color:var(--gold);text-shadow:0 0 20px rgba(255,179,71,.5);margin:24px 0 16px}
+.hero p{color:var(--ink);text-shadow:none;max-width:440px}
+.boot{font:500 12px/1.9 'IBM Plex Mono',monospace;color:var(--g);text-align:left;max-width:92vw}
+.boot span{display:block;opacity:0;animation:bl .5s forwards}@keyframes bl{to{opacity:1}}
+#hud div{background:rgba(3,14,10,.78);border-color:rgba(61,255,160,.35);font-family:'IBM Plex Mono',monospace}
+#hud small{color:#6fd9a5}#hud b{color:var(--gold)}
+#gauge i{background:var(--g);box-shadow:0 0 10px var(--g)}
+.big{font:400 clamp(15px,4.2vw,24px)/1.7 'Press Start 2P','IBM Plex Mono',monospace;color:var(--gold);text-shadow:0 0 16px rgba(255,179,71,.4)}
+#in .box{background:rgba(3,14,10,.88);border-color:rgba(61,255,160,.35)}
+@media(min-width:900px){.panel{padding:0 28px 26px}.tb{margin:0 -28px 18px}h2{font-size:26px}.panel p{font-size:17px}}
+</style>
+</head>
+<body>
+<canvas id="rain"></canvas><div id="scan"></div>
+
+<div id="hud"><div><small>ГОД</small><b id="hA">1963</b></div><div><small>ВОЗРАСТ</small><b id="hT">0 лет</b></div><div><small>ЗАГРУЗКА</small><b id="hP">0%</b></div><div style="flex:.9"><small>СТАТУС</small><b id="hM">ЗАГРУЗКА</b></div></div>
+<div id="gauge"><i id="gf"></i></div>
+
+<main>
+<section class="stop hero" data-y="1963" data-file="boot"><div class="boot"><span style="animation-delay:.2s">&gt; BIOS ХРУСТАЛЁВ-63 v1.0 ........ OK</span><span style="animation-delay:.9s">&gt; Проверка памяти: 63 года ........ OK</span><span style="animation-delay:1.6s">&gt; Загрузка воспоминаний ........ 100%</span></div><h1>С праздником,<br>любимый папа!</h1><p>Мы собрали твою жизнь в программу. Загрузка идёт сверху вниз: листай или жми «Дальше».</p><div class="hint">↓</div></section>
+
+<section class="stop" data-y="1963" data-file="start.txt"><div class="panel rv"><div class="tag">1963 · ИНИЦИАЛИЗАЦИЯ</div><h2>5 января 1963. Старт</h2><p>Родился в селе Тайтурка Иркутской области. Ещё в начальной школе отец сажал тебя с гармонью перед большим зеркалом, а потом была музыкальная школа по классу баяна.</p></div></section>
+
+<section class="stop" data-y="1976" data-file="sport.txt"><div class="panel rv"><div class="tag">ДЕТСТВО · СПОРТ</div><h2>Спорт с детства</h2><p>Играл за сборную Тайтурки по футболу, брал призовые места на лыжах, занимался ориентированием и лёгкой атлетикой. Потом волейбол: сборная ветеранов Ивановки и игры со старшеклассниками. А в 2017-м ещё и 2 место в районных нормах ГТО.</p><div class="car"><img src="https://xrustal.ucoz.ru/foto_sayata/image.jpg" alt="" loading="lazy" onerror="this.remove()"></div><div class="sw">ЛИСТАЙ ФОТО →</div></div></section>
+
+<section class="stop" data-y="1982" data-file="technikum.txt"><div class="panel rv"><div class="tag">1982 · ТЕХНИКУМ</div><h2>1982. Техникум</h2><p>Окончил Иркутский гидрометеорологический техникум по специальности «радиотехник-аэролог». По этой специальности ты так ни разу и не проработал: жизнь повернула к физике и информатике. Зато гитару освоил именно там: были выступления в общежитии и на сцене техникума.</p></div></section>
+
+<section class="stop" data-y="1983" data-file="service.txt"><div class="panel rv"><div class="tag">СЛУЖБА</div><h2>Служба</h2><p>Сначала учебка в Тамбове, потом Туркестанский военный округ, 40-я армия: пересылка в Азадбаше. Баян и гитара пригодились и там: в армейском ансамбле ты играл с Серёгой Мавриным, будущим основателем «Арии». Дружбе с однополчанами ты посвятил целую страницу на своём сайте.</p><div class="car"><img src="https://xrustal.ucoz.ru/armiya/papa.jpg" alt="" loading="lazy" onerror="this.remove()"><img src="https://xrustal.ucoz.ru/foto_sayata/turkvo_40_armija.jpg" alt="" loading="lazy" onerror="this.remove()"><img src="https://xrustal.ucoz.ru/foto_sayata/delo_k_dembelju.jpg" alt="" loading="lazy" onerror="this.remove()"><img src="https://xrustal.ucoz.ru/foto_sayata/odnopolchane.jpg" alt="" loading="lazy" onerror="this.remove()"><img src="https://xrustal.ucoz.ru/glavnaya/ris1.jpg" alt="" loading="lazy" onerror="this.remove()"><img src="https://xrustal.ucoz.ru/glavnaya/ris2.jpg" alt="" loading="lazy" onerror="this.remove()"><img src="https://xrustal.ucoz.ru/glavnaya/ris3.jpg" alt="" loading="lazy" onerror="this.remove()"></div><div class="sw">ЛИСТАЙ ФОТО →</div></div></section>
+
+<section class="stop" data-y="1988" data-file="physics.txt"><div class="panel rv"><div class="tag">1986–1990 · ФИЗФАК</div><h2>1986–1990. Физика</h2><p>Иркутский педагогический институт, физический факультет, потом школа № 39 в Иркутске. Там началась история учителя.</p></div></section>
+
+<section class="stop" data-y="1990" data-file="computer.txt"><div class="panel rv"><div class="tag">1990 · КЛЮЧЕВОЙ ФАЙЛ</div><h2>1990. Первый компьютер</h2><p>В школе появились компьютерные классы на советско-болгарских ЭВМ УКНЦ, и началось твоё увлечение компьютером. Оно стало профессией и осталось любимым делом.</p></div></section>
+
+<section class="stop" data-y="1991" data-file="move.txt"><div class="panel rv"><div class="tag">1991 · ПЕРЕЕЗД</div><h2>1991. Новый горизонт</h2><p>Переезд с семьёй на Дальний Восток, в Амурскую область. С тех пор твой дом и твоя школа в Ивановке.</p><img class="ph" style="max-width:150px;max-height:24vh" src="img/young.jpg" alt="" loading="lazy"></div></section>
+
+<section class="stop" data-y="1994" data-file="teacher.txt"><div class="panel rv"><div class="tag">1994–2003 · УЧИТЕЛЬ ГОДА</div><h2>1994–2003. Учитель года</h2><p>«Учитель года» школы и района (1994), лауреат областного конкурса (1995), с 1994-го руководитель районного объединения учителей информатики, с 2003-го высшая категория.</p></div></section>
+
+<section class="stop" data-y="1995" data-file="band.txt"><div class="panel rv"><div class="tag">1995 · ВИА</div><h2>1995. Учительский ансамбль</h2><p>Ты организовал единственный в Ивановском районе (а возможно, и в области) учительский вокально-инструментальный ансамбль. Бас: Олег Ермоленко, ударные: Сергей Медведев, клавишные: Альберт Хан, а вокал и ритм-гитара: ты.</p><div class="car"><img src="https://xrustal.ucoz.ru/myzica/ris20.jpeg" alt="" loading="lazy" onerror="this.remove()"><img src="https://xrustal.ucoz.ru/myzica/ris23.jpeg" alt="" loading="lazy" onerror="this.remove()"><img src="https://xrustal.ucoz.ru/myzica/ris21.jpeg" alt="" loading="lazy" onerror="this.remove()"><img src="https://xrustal.ucoz.ru/myzica/roc.jpg" alt="" loading="lazy" onerror="this.remove()"><img src="https://xrustal.ucoz.ru/foto_sayata/otkrytyj_urok.jpg" alt="" loading="lazy" onerror="this.remove()"></div><div class="sw">ЛИСТАЙ ФОТО →</div></div></section>
+
+<section class="stop" data-y="2003" data-file="cabinet.txt"><div class="panel rv"><div class="tag">КАБИНЕТ ИНФОРМАТИКИ</div><h2>Кабинет информатики</h2><p>Свой кабинет, стенд «Наши успехи», районные семинары и выступления. А твой педагогический девиз: «Ты не учитель, пока тебе об этом не скажут дети».</p><div class="car"><img src="https://xrustal.ucoz.ru/Nasproekt_obraz/stend_v_kabinete.jpg" alt="" loading="lazy" onerror="this.remove()"><img src="https://xrustal.ucoz.ru/Nasproekt_obraz/ris1.jpg" alt="" loading="lazy" onerror="this.remove()"><img src="https://xrustal.ucoz.ru/Nasproekt_obraz/upr_sovet_1.jpg" alt="" loading="lazy" onerror="this.remove()"></div><div class="sw">ЛИСТАЙ ФОТО →</div></div></section>
+
+<section class="stop" data-y="2008" data-file="contests.txt"><div class="panel rv"><div class="tag">2008–2010 · КОНКУРСЫ</div><h2>2008–2010. Компьютерные конкурсы</h2><p>2008: Всероссийский конкурс «Учительская компьютерная семья», 6 место. 2009: победа в номинации «Знание офисной программы Word 2007» конкурса «PRO-движение». 2010: 3 место там же. Так что многоборье в Рязани у тебя не первое.</p></div></section>
+
+<section class="stop" data-y="2015" data-file="best.txt"><div class="panel rv"><div class="tag">2015–2016 · ЛУЧШИЙ В РОССИИ</div><h2>2015 и 2016. Лучший в России</h2><p>Победитель конкурса «Лучшие учителя России»: премия губернатора (2015) и премия Правительства РФ (2016). В 2015-м тебя назначили ещё и председателем предметной комиссии ЕГЭ по информатике.</p><div class="car"><img src="https://xrustal.ucoz.ru/scanirovanie/scan13.jpg" alt="" loading="lazy" onerror="this.remove()"><img src="https://xrustal.ucoz.ru/glavnaya/gramota2.jpg" alt="" loading="lazy" onerror="this.remove()"><img src="https://xrustal.ucoz.ru/Nasproekt_obraz/gram1.jpg" alt="" loading="lazy" onerror="this.remove()"></div><div class="sw">ЛИСТАЙ ФОТО →</div></div></section>
+
+<section class="stop" data-y="2018" data-file="site.html"><div class="panel rv"><div class="tag">ЛИЧНЫЙ САЙТ</div><h2>Свой сайт</h2><p>Личный сайт учителя ты создал сам, и на Всероссийском конкурсе учительских сайтов на портале урок.рф он занял первое место. А теперь вот сайт для тебя.</p><div class="car"><img src="https://xrustal.ucoz.ru/foto_sayata/diplom_za_sajt1.jpg" alt="" loading="lazy" onerror="this.remove()"><img src="https://xrustal.ucoz.ru/foto_sayata/diplom_za_sajt_2.jpg" alt="" loading="lazy" onerror="this.remove()"><img src="https://xrustal.ucoz.ru/novosti/lichnyj_diplom_za_sajt.jpg" alt="" loading="lazy" onerror="this.remove()"></div><div class="sw">ЛИСТАЙ ФОТО →</div><a class="lnk" href="https://xrustal.ucoz.ru/" target="_blank" rel="noopener">Открыть твой сайт →</a></div></section>
+
+<section class="stop" data-y="2023" data-file="return.jpg"><div class="panel rv"><div class="tag">ЯНВАРЬ 2023</div><h2>Январь 2023. Возвращение</h2><p>Спустя сорок лет ты приехал в родной техникум. Тебя встретили как «нашего выпускника».</p><div class="car"><img src="img/igmt.jpg" alt="" loading="lazy"></div><div class="sw">ЛИСТАЙ ФОТО →</div></div></section>
+
+<section class="stop" data-y="2026" data-file="ryazan.jpg"><div class="panel rv"><div class="tag">ИЮНЬ 2026 · РЯЗАНЬ</div><h2>Июнь 2026. Рязань</h2><p>XVI Всероссийский чемпионат по компьютерному многоборью: 10 место из 80 команд, серебро в «Цифровой безопасности» и диплом «Душа в душу».</p><div class="car"><img src="img/diplomas.jpg" alt="" loading="lazy"><img src="img/costume.jpg" alt="" loading="lazy"><img src="img/dance.jpg" alt="" loading="lazy"><img src="img/bells.jpg" alt="" loading="lazy"><img src="img/couple.jpg" alt="" loading="lazy"></div><div class="sw">ЛИСТАЙ ФОТО →</div></div></section>
+
+<section class="stop" data-y="2026" data-file="family.jpg"><div class="panel rv"><div class="tag">СЕМЬЯ</div><h2>Свадьба в семье</h2><p>Светлый день для всей семьи. Ты с мамой рядом с молодыми: в ЗАГСе, под дождём из лепестков и на прогулке в парке.</p><div class="car"><img src="img/w-petals.jpg" alt="" loading="lazy"><img src="img/w-five.jpg" alt="" loading="lazy"><img src="img/w-trio.jpg" alt="" loading="lazy"><img src="img/w-bride.jpg" alt="" loading="lazy"><img src="img/w-stairs.jpg" alt="" loading="lazy"></div><div class="sw">ЛИСТАЙ ФОТО →</div></div></section>
+
+<section class="stop" data-y="2026" data-file="thanks.txt"><div class="panel rv"><div class="tag">ОТ ДЕТЕЙ</div><h2>Спасибо, папа</h2><p>За физику и информатику. За то, что учил не бояться нового и не бросать начатое. В 63 года выйти на сцену всероссийского чемпионата и взять серебро: вот на кого мы равняемся.</p></div></section>
+
+<section class="stop" data-y="2026" data-file="done.log"><div class="panel rv"><div class="tag">100%</div><h2>Загрузка завершена</h2><p>Все 63 года загружены без единой ошибки. Осталась последняя программа: подарок от нас.</p></div></section>
+
+<section class="stop" data-y="2026" data-file="gift">
+ <div class="gift">
+  <div class="big rv">Найден файл<br>gift.exe</div>
+  <img class="cv rv" src="img/cert-cover.jpg" alt="Подарочный сертификат">
+  <button class="btn" id="open">Запустить gift.exe</button>
+  <div id="in">
+   <img src="img/cert.jpg" alt="Сертификат" id="ci">
+   <div class="box"><h2>SPA-программа на 3 часа</h2>
+    <p>Салон «Мечта бьюти», Благовещенск. ул. Горького, 158, ТЦ «Азия», 2 этаж.<br>Запись по телефону <a href="tel:+79145500519">+7 (914) 5-500-519</a>.</p></div>
+   <div class="box"><h2>Что входит в программу</h2>
+    <div class="row"><span>💆 Массаж</span><em>60 мин</em></div>
+    <div class="row"><span>🌿 Фито-солевое обёртывание</span><em>30 мин</em></div>
+    <div class="row"><span>✨ Скрабирование</span><em>15 мин</em></div>
+    <div class="row gift-row"><span>🎁 Прессотерапия на ноги <b>в подарок</b></span><em>20 мин</em></div>
+   </div>
+   <p class="big" style="margin-top:26px">С Днём отца!</p>
+   <p style="text-align:center">Отдыхай, ты это заслужил.<br><b>Твои дети</b></p>
+   <div style="text-align:center"><span class="again" id="again">↑ Перезагрузить</span></div>
+  </div>
+ </div>
+</section>
+</main>
+<button id="nx">Запустить PAPA.EXE ▶</button>
+<div id="lb"><img alt=""></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),mix=(a,b,t)=>a+(b-a)*t,mixc=(a,b,t)=>a.map((v,i)=>Math.round(mix(v,b[i],t)));
+const root=document.documentElement,stops=[...document.querySelectorAll('.stop')];
+stops.forEach(s=>{const p=s.querySelector('.panel');if(p&&s.dataset.file)p.insertAdjacentHTML('afterbegin','<div class="tb"><i></i><i></i><i></i><b>'+s.dataset.file+'</b></div>')});
+let C=[],Y=[],cur=0,RC=0;
+function measure(){C=stops.map(s=>s.offsetTop+s.offsetHeight/2);Y=stops.map(s=>+s.dataset.y)}
+const pl=(n,a,b,c)=>{const m=n%100,d=n%10;return m>10&&m<20?c:d===1?a:d>1&&d<5?b:c};
+function frame(){
+ const y=scrollY+innerHeight/2,L=C.length-1;let yr=Y[0];
+ if(y>=C[L])yr=Y[L];else if(y>C[0]){let i=0;while(C[i+1]<y)i++;yr=mix(Y[i],Y[i+1],(y-C[i])/Math.max(1,C[i+1]-C[i]))}
+ const pct=cl((y-C[0])/(C[L]-C[0]))*100;let idx=0;for(let i=0;i<=L;i++)if(C[i]<=y+10)idx=i;cur=idx;RC=pct/100;
+ const age=Math.max(0,Math.floor(yr-1963+.01));
+ $('hA').textContent=Math.round(yr);$('hT').textContent=age+' '+pl(age,'год','года','лет');$('hP').textContent=Math.round(pct)+'%';$('hM').textContent=pct>=98?'ГОТОВО':'ЗАГРУЗКА';$('gf').style.height=pct+'%';
+ const nx=$('nx');nx.classList.toggle('hide',idx>=L);nx.textContent=idx===0?'Запустить ▶':'Дальше ↓'}
+/* дождь из кода */
+const cv=$('rain'),cx=cv.getContext('2d'),CH='01010101{}[]<>/;=+ПАПАХРУСТАЛЁВ',fs=16,still=matchMedia('(prefers-reduced-motion:reduce)').matches;let dr=[];
+function rz(){cv.width=innerWidth;cv.height=innerHeight;dr=Array.from({length:Math.ceil(cv.width/fs)},()=>-Math.random()*40|0)}
+function rain(){if(still||document.hidden)return;cx.fillStyle='rgba(4,16,12,.14)';cx.fillRect(0,0,cv.width,cv.height);const p=RC*RC;
+ cx.fillStyle='rgb('+Math.round(mix(61,255,p))+','+Math.round(mix(255,179,p))+','+Math.round(mix(160,71,p))+')';cx.font=fs+'px "IBM Plex Mono",monospace';
+ for(let i=0;i<dr.length;i++){cx.fillText(CH[Math.random()*CH.length|0],i*fs,dr[i]*fs);if(dr[i]*fs>cv.height&&Math.random()>.975)dr[i]=0;dr[i]++}}
+addEventListener('resize',rz);rz();setInterval(rain,65);
+let tick=false;const req=()=>{if(!tick){tick=true;requestAnimationFrame(()=>{tick=false;frame()})}};
+addEventListener('scroll',req,{passive:true});addEventListener('resize',()=>{measure();req()});addEventListener('load',()=>{measure();frame()});
+measure();frame();
+$('nx').onclick=()=>{const n=Math.min(cur+1,C.length-1);scrollTo({top:C[n]-innerHeight/2,behavior:'smooth'})};
+
+/* появление панелей */
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('on')),{threshold:.35});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* карусели: стрелки, точки, один кадр целиком */
+document.querySelectorAll('.car').forEach(car=>{
+ const w=document.createElement('div');w.className='carw';car.parentNode.insertBefore(w,car);w.appendChild(car);
+ const old=w.nextElementSibling;const dots=document.createElement('div');dots.className='dots2';
+ if(old&&old.classList.contains('sw'))old.replaceWith(dots);else w.after(dots);
+ const mk=(c,t,d)=>{const b=document.createElement('button');b.className='cb '+c;b.type='button';b.textContent=t;b.setAttribute('aria-label',d>0?'Дальше':'Назад');b.onclick=e=>{e.stopPropagation();car.scrollBy({left:d*car.clientWidth,behavior:'smooth'})};w.appendChild(b);return b};
+ const L=mk('l','‹',-1),R=mk('r','›',1);
+ const idx=()=>Math.round(car.scrollLeft/Math.max(1,car.clientWidth));
+ function upd(){const n=car.children.length,i=Math.min(idx(),n-1);
+  if(dots.children.length!==n)dots.innerHTML='<i></i>'.repeat(n);
+  [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===i));
+  L.disabled=i<=0;R.disabled=i>=n-1;L.style.display=R.style.display=dots.style.display=n<2?'none':''}
+ car.addEventListener('scroll',()=>requestAnimationFrame(upd),{passive:true});
+ new MutationObserver(upd).observe(car,{childList:true});addEventListener('resize',upd);upd();
+});
+
+/* подарок */
+function confetti(){const E=['🎉','⭐','🏅','🎁','✨','💾'],end=Date.now()+5000;
+ (function f(){const c=document.createElement('div');c.className='conf';c.textContent=E[Math.random()*E.length|0];
+  c.style.cssText+=`left:${Math.random()*100}vw;font-size:${22+Math.random()*16}px;animation-duration:${2+Math.random()*2}s`;
+  document.body.appendChild(c);setTimeout(()=>c.remove(),4300);if(Date.now()<end)requestAnimationFrame(f)})()}
+$('open').onclick=function(){root.style.scrollSnapType='none';$('nx').classList.add('hide');this.style.display='none';$('in').classList.add('open');confetti();
+ setTimeout(()=>{measure();$('in').scrollIntoView({behavior:'smooth',block:'start'})},150)};
+const lb=$('lb');
+document.querySelectorAll('.car img').forEach(i=>i.onclick=()=>{lb.firstElementChild.src=i.src;lb.classList.add('on')});
+$('ci').onclick=e=>{lb.firstElementChild.src=e.target.src;lb.classList.add('on')};lb.onclick=()=>lb.classList.remove('on');
+$('again').onclick=()=>{root.style.scrollSnapType='';scrollTo({top:0,behavior:'smooth'})};
+
+/* клавиатура для ПК */
+addEventListener('keydown',e=>{
+ if(root.style.scrollSnapType==='none'||lb.classList.contains('on')||e.target.closest('button,a'))return;
+ const k=e.key;let d=0;if(k==='ArrowDown'||k==='PageDown'||k===' ')d=1;else if(k==='ArrowUp'||k==='PageUp')d=-1;if(!d)return;
+ e.preventDefault();const n=Math.min(Math.max(cur+d,0),C.length-1);scrollTo({top:C[n]-innerHeight/2,behavior:'smooth'})});
+</script>
+</body>
+</html>
